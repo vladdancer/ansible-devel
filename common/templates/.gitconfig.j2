@@ -1,11 +1,58 @@
 [user]
-        name = {{ git_username }}
-        email = {{ git_useremail }}
+  name = {{ git_username }}
+  email = {{ git_useremail }}
+
 [alias]
-        {{ git_checkout_alias }} = checkout
-        {{ git_status_alias }} = status
-        {{ git_commit_alias }} = commit
+  s = status
+  ffix = config core.filemode false
+  sml = ls-files -m
+  sm = status -uno
+  b = branch
+  ba = branch -a -v -v
+  bs = !git-branch-status
+  bsi = !git-branch-status -i
+  ci = commit
+  co = checkout
+  d = diff -C
+  ds = diff -C --stat
+  dsp = diff -C --stat -p
+  dw = diff -C --color-words
+  p = pull
+
+  l = log -C --decorate
+  ls = log -C --stat --decorate
+  lsp = log -C --stat -p --decorate
+  lg = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s'
+  lga = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all
+  l19 = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all -19
+
+  # for hard logs
+  lsd = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all --simplify-by-decoration
+  ru = remote update
+  sb = show-branch --sha1-name
+  ls-del = ls-files -d
+  ls-mod = ls-files -m # including removed files.
+  ls-new = ls-files --exclude-standard -o
+  ls-ign = ls-files --exclude-standard -o -i
+  ka = !gitk --all
+  kdo = !gitk --date-order
+  kado = !gitk --all --date-order
+  kasd = !gitk --all --simplify-by-decoration
+
 [color]
-        ui = {{ git_color }}
+  ui = true
+
+[core]
+  whitespace = trailing-space,tab-in-indent
+  editor = nano
+  filemode = false
+  autocrlf = false
+
+[commit]
+  template = ~/.git.commit.template
+
+[credential]
+  helper = cache --timeout=3600
+
 [push]
-        default = simple
+  default = simple

@@ -2,6 +2,8 @@
 - hosts: all
   sudo: no
 
+- include_vars: users/${dev_name}.yml
+
   vars:
   - ansible_python_interpreter: /usr/bin/python2
 
@@ -18,3 +20,5 @@
   - include: common/tasks/extra-development.yml tags=extra-development
   - include: common/tasks/postgresql.yml tags=postgresql
   - include: common/tasks/extras.yml tags=extras
+
+  roles: $user_roles
