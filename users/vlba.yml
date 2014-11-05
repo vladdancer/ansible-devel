@@ -1,0 +1,7 @@
+# User configuration
+username: vlba
+user_roles: [common, drupal-dev]
+
+# Git configuration
+git_username: Batyrenko Vlad
+git_useremail: vlba@drupalway.net
