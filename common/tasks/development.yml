@@ -3,52 +3,10 @@
 
 - name: Installing Version Control Systems
   sudo: yes
-  apt: pkg=git,mercurial,gitg,meld state=installed
+  apt: pkg=git,mercurial state=installed
 
 - name: Configuring GIT defaults
   template: src=common/templates/.gitconfig.j2 dest=/home/${username}/.gitconfig owner=$username group=$username mode=0644 backup=yes
-
-- name: Configuring VIM defaults
-  copy: src=common/files/.exrc dest=/home/${username}/.exrc owner=$username group=$username mode=0644 backup=yes
-
-- name: Checking Heroku toolbelt installation
-  sudo: yes
-  register: inst_heroku
-  file: path=/usr/local/heroku state=directory
-
-- name: Installing Ubuntu Heroku toolbelt
-  sudo: yes
-  shell: wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-  when: inst_heroku.changed
-
-- name: Checking Pythonz installation
-  register: inst_pythonz
-  file: path=/home/${username}/.pythonz state=directory
-
-- name: Installing Pythonz
-  shell: curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
-  when: inst_pythonz.changed
-
-- name: Installing PIP
-  apt: pkg=python-pip state=installed
-
-- name: Checking Python virtualenvwrapper installation
-  sudo: yes
-  register: inst_virtualenvwrapper
-  file: path=/usr/local/bin/virtualenvwrapper.sh
-
-- name: Installing Python virtualenv
-  sudo: yes
-  shell: pip install virtualenvwrapper
-  when: inst_virtualenvwrapper.changed
-
-- name: Installing system iPython
-  sudo: yes
-  pip: name=ipython state=present
-
-- name: Installing system Requests
-  sudo: yes
-  pip: name=requests state=present
 
 - name: Installing system Ruby
   sudo: yes
@@ -81,26 +39,6 @@
   apt: pkg=oracle-java7-installer state=latest update_cache=yes
   when: inst_java.changed
 
-- name: Installing Maven
-  sudo: yes
-  apt: pkg=maven state=installed
-
-- name: Installing Ant
-  sudo: yes
-  apt: pkg=ant state=installed
-
 - name: Installing Node Version Manager (NVM)
   register: inst_nvm
   git: repo=git://github.com/creationix/nvm.git dest=/home/${username}/.nvm
-
-- name: Checking Seam Framework installation
-  register: inst_seam
-  file: path=/home/${username}/program/jboss-seam-2.3.0.Final state=directory
-
-- name: Downloading Seam Framework
-  get_url: url=$seam dest=/tmp/seam.tar.gz
-  when: inst_seam.changed
-
-- name: Installing Seam Framework
-  command: tar -xzf /tmp/seam.tar.gz -C /home/${username}/program/
-  when: inst_seam.changed

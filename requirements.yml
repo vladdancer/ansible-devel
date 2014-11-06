@@ -1,0 +1,11 @@
+# from galaxy
+- src: kosssi.phpstorm
+
+# from galaxy
+- src: geerlingguy.drush
+
+# from galaxy
+- src: geerlingguy.phpmyadmin
+
+# from galaxy
+- src: perlmonkey.mailcatcher

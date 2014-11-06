@@ -19,3 +19,6 @@
   sudo: yes
   shell: dpkg -i /tmp/google-chrome-stable_current_amd64.deb
   when: inst_chrome.chnaged
+
+- name: Ensure package firefox is installed
+  apt: pkg=firefox state=present

@@ -60,3 +60,15 @@
 - name: Installing browser flash plugin
   sudo: yes
   apt: pkg=flashplugin-installer state=latest
+
+# HipChat
+- name: Add hipchat repository into sources list.
+  apt_repository: repo='deb http://downloads.hipchat.com/linux/apt stable main' state=present
+
+- name: add hipchat key
+  sudo: yes
+  apt_key: url=$hipchat_key_url state=present
+
+- name: Installing xChat
+  sudo: yes
+  apt: pkg=hipchat state=installed
