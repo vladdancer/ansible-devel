@@ -19,4 +19,4 @@
   - include: common/tasks/postgresql.yml tags=postgresql
   - include: common/tasks/extras.yml tags=extras
 
-  roles: $user_roles
+  roles: ${user_roles}
