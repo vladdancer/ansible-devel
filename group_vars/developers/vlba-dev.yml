@@ -6,4 +6,4 @@ username: vlba
 git_username: Batyrenko Vlad
 git_useremail: vlba@drupalway.net
 
-user_roles: [drupal-dev]
+user_roles: ["drupal-dev"]
