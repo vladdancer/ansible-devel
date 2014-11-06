@@ -1,0 +1,9 @@
+[vlba-dev]
+127.0.0.1
+
+[vlmo-dev]
+127.0.0.1
+
+[developers]
+vlba-dev
+vlmo-dev
