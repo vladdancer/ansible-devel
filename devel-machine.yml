@@ -18,3 +18,6 @@
   - include: common/tasks/extra-development.yml tags=extra-development
   - include: common/tasks/postgresql.yml tags=postgresql
   - include: common/tasks/extras.yml tags=extras
+
+  roles:
+  - { role: geerlingguy.drush,  drush_install_path: /usr/local/bin/drush, drush_version: 6.2.0, drush_path: /home/${username}/drush , tags: ["drush"] }
