@@ -3,12 +3,8 @@
 username: palazzem
 
 # Git configuration
-git_username: Emanuele palazzetti
-git_useremail: info@emanuelepalazzetti.eu
-git_checkout_alias: co
-git_status_alias: st
-git_commit_alias: ci
-git_color: true
+git_username: Vladyslav Batyrenko
+git_useremail: vlba@drupalway.net
 
 # Download URL configuration
 chrome: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -20,4 +16,4 @@ pycharm: http://download-ln.jetbrains.com/python/pycharm-2.7.2.tar.gz
 sublime: http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2
 
 # Password configuration
-psqlpassword: mypass
+phpmyadmin: drupalpro
