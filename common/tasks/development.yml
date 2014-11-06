@@ -19,7 +19,7 @@
 - name: Installing Ubuntu Heroku toolbelt
   sudo: yes
   shell: wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-  when_changed: $inst_heroku
+  when: inst_heroku.changed
 
 - name: Checking Pythonz installation
   register: inst_pythonz
@@ -27,7 +27,7 @@
 
 - name: Installing Pythonz
   shell: curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
-  when_changed: $inst_pythonz
+  when: inst_pythonz.changed
 
 - name: Installing PIP
   apt: pkg=python-pip state=installed
@@ -40,7 +40,7 @@
 - name: Installing Python virtualenv
   sudo: yes
   shell: pip install virtualenvwrapper
-  when_changed: $inst_virtualenvwrapper
+  when: inst_virtualenvwrapper.changed
 
 - name: Installing system iPython
   sudo: yes
@@ -60,7 +60,7 @@
 
 - name: Installing Ruby RVM
   shell: \curl -L https://get.rvm.io | bash -s stable
-  when_changed: $inst_rvm
+  when: inst_rvm.changed
 
 - name: Checking Oracle JDK 7 installation
   sudo: yes
@@ -70,7 +70,7 @@
 - name: Enabling Oracle JDK 7 PPA
   sudo: yes
   apt_repository: repo=ppa:webupd8team/java
-  when_changed: $inst_java
+  when: inst_java.changed
 
 - name: Unattended installation
   sudo: yes
@@ -79,7 +79,7 @@
 - name: Installing Oracle JDK 7
   sudo: yes
   apt: pkg=oracle-java7-installer state=latest update_cache=yes
-  when_changed: $inst_java
+  when: inst_java.changed
 
 - name: Installing Maven
   sudo: yes
@@ -99,8 +99,8 @@
 
 - name: Downloading Seam Framework
   get_url: url=$seam dest=/tmp/seam.tar.gz
-  when_changed: $inst_seam
+  when: inst_seam.changed
 
 - name: Installing Seam Framework
   command: tar -xzf /tmp/seam.tar.gz -C /home/${username}/program/
-  when_changed: $inst_seam
+  when: inst_seam.changed

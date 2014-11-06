@@ -9,13 +9,13 @@
 - name: Installing Google Chrome dependencies
   sudo: yes
   apt: name=libgconf2-4,libxss1 state=latest
-  when_changed: $inst_chrome
+  when: inst_chrome.chnaged
 
 - name: Downloading Google Chrome
   get_url: url=$chrome dest=/tmp/google-chrome-stable_current_amd64.deb
-  when_changed: $inst_chrome
+  when: inst_chrome.chnaged
 
 - name: Installing Google Chrome
   sudo: yes
   shell: dpkg -i /tmp/google-chrome-stable_current_amd64.deb
-  when_changed: $inst_chrome
+  when: inst_chrome.chnaged
