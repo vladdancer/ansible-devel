@@ -2,8 +2,6 @@
 - hosts: all
   sudo: no
 
-- include_vars: users/${dev_name}.yml
-
   vars:
   - ansible_python_interpreter: /usr/bin/python2
 
