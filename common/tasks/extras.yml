@@ -13,6 +13,50 @@
   sudo: yes
   apt: pkg=vlc state=latest
 
+# POWER_UTILS
+- name: Installing synaptic
+  sudo: yes
+  apt: pkg=synaptic state=latest
+
 - name: Installing xChat
   sudo: yes
   apt: pkg=xchat state=latest
+
+
+# TERMINAL_UTILS
+
+- name: Install Terminal Utils:
+  register: inst_term_utils
+  action: apt pkg={{item}} state=installed
+  with_items:
+  - guake
+  - nautilus-open-terminal
+  - grsync
+
+- name: Configure Terminal Utils
+  command: {{ item }}
+  with_items:
+  - "gconftool -s /apps/guake/keybindings/global/show_hide --type=string 'F4'"
+  - "gconftool -s /apps/guake/general/history_size --type=int 8192"
+  - "gconftool -s /apps/guake/style/background/transparency --type=int 10"
+  - "gconftool -s /apps/guake/general/window_ontop --type=bool false"
+  - "gconftool -s /apps/guake/style/font/style --type=string 'Monospace 13'"
+  when: inst_term_utils.changed
+
+
+# GIT_POWER
+- name: Install Git Utils:
+  register: inst_git_utils
+  action: apt pkg={{item}} state=installed
+  with_items:
+  - gitg
+  - meld
+  - git-gui
+  - gitk
+  - nautilus-compare
+
+
+# Flash
+- name: Installing browser flash plugin
+  sudo: yes
+  apt: pkg=flashplugin-installer state=latest
